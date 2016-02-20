@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<!-- saved from url=(0165)https://wit.blackboard.com/bbcswebdav/pid-397195-dt-content-rid-1398790_1/courses/COMP367003_Spring_2016/coursesProjectBlank.html?Choice1=eng&Choice2=eng&Choice3=fre -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Courses Radio Button Project</title>
+<script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script>
+
+</head>
+<body bgcolor="#efefef">
+<h2>Please choose three courses in order of preference:</h2>
+<h3>(You must choose different courses for your first second and third choice.)</h3>
+
+<form name="Courses" onsubmit="return validate_buttons()">
+
+<table>
+<tbody><tr>
+<td align="RIGHT" colstart="1"><b>Course</b></td>
+<td align="CENTER" colstart="2"><b>First Choice</b></td>
+<td align="CENTER" colstart="3"><b>Second Choice</b></td>
+<td align="CENTER" colstart="4"><b>Third Choice</b></td>
+</tr>
+<tr>
+<td align="RIGHT" colstart="1">English</td>
+<td align="CENTER" colstart="2"><input type="RADIO" name="Choice1" value="eng" id="eng" checked="CHECKED"></td>
+<td align="CENTER" colstart="3"><input type="RADIO" name="Choice2" value="eng" id="eng"></td>
+<td align="CENTER" colstart="4"><input type="RADIO" name="Choice3" value="eng" id="eng"></td>
+</tr>
+<tr><td align="RIGHT" colstart="1">French</td>
+<td align="CENTER" colstart="2"><input type="RADIO" name="Choice1" value="fre" id="fre"></td>
+<td align="CENTER" colstart="3"><input type="RADIO" name="Choice2" value="fre" id="fre" checked="CHECKED"></td>
+<td align="CENTER" colstart="4"><input type="RADIO" name="Choice3" value="fre" id="fre"></td>
+</tr>
+<tr>
+<td align="RIGHT" colstart="1">Spanish</td>
+<td align="CENTER" colstart="2"><input type="RADIO" name="Choice1" value="spa" id="spa"></td>
+<td align="CENTER" colstart="3"><input type="RADIO" name="Choice2" value="spa" id="spa"></td>
+<td align="CENTER" colstart="4"><input type="RADIO" name="Choice3" value="spa" id="spa" checked="CHECKED"></td>
+</tr>
+<tr>
+<td align="RIGHT" colstart="1">Math</td>
+<td align="CENTER" colstart="2"><input type="RADIO" name="Choice1" value="mat" id="mat"></td>
+<td align="CENTER" colstart="3"><input type="RADIO" name="Choice2" value="mat" id="mat"></td>
+<td align="CENTER" colstart="4"><input type="RADIO" name="Choice3" value="mat" id="mat"></td>
+</tr>
+<tr>
+<td align="RIGHT" colstart="1">Science</td>
+<td align="CENTER" colstart="2"><input type="RADIO" name="Choice1" value="sci" id="sci"></td>
+<td align="CENTER" colstart="3"><input type="RADIO" name="Choice2" value="sci" id="sci"></td>
+<td align="CENTER" colstart="4"><input type="RADIO" name="Choice3" value="sci" id="sci"></td>
+</tr>
+
+</tbody>
+</table>
+<p><input type="SUBMIT" value="Register" id="register" size="20">
+<input type="RESET" value="Reset" id="reset" size="20"></p>
+</form>
+
+<script type="text/javascript">
+<!--
+function clear_radios(){
+	$('input').attr('checked',false);
+}
+clear_radios();
+var clicked = 0;
+var buttons_clicked = [""];
+var choices = [""]
+
+function validate_buttons(){
+	if(choices.length == 0 || buttons_clicked.length == 0){
+		alert("Please make some choices.");
+		clicked = 0;
+		buttons_clicked = [];
+		clear_radios();
+		return false;
+	}
+	for(var i = 0; i < buttons_clicked.length; i++){
+		for(var j = 0; j < buttons_clicked.length; j++){
+			if((buttons_clicked[i] == buttons_clicked[j] || choices[i] == choices[j]) && i != j){
+				//2 are the same//
+				alert("Please recheck your choices.");
+				clicked = 0;
+				buttons_clicked = [];
+				clear_radios();
+				return false;
+			}
+		}
+	}
+	//All good//
+	alert("All Good :)");
+	return false;
+}
+
+$("input").click(function(){
+	if($(this).attr('type') == "RADIO"){
+		if(clicked < 2){
+			buttons_clicked[clicked] = $(this).attr('id');
+			choices[clicked] = $(this).attr('name');
+			clicked++;
+		} else {
+			buttons_clicked[clicked] = $(this).attr('id');
+			choices[clicked] = $(this).attr('name');
+			alert("Submit your results or reset");
+		}
+	} else if($(this).attr('type') == "RESET"){
+		clicked = 0;
+		buttons_clicked = [];
+		clear_radios();
+	}
+});
+//-->
+</script>
+
+</body>
+
+</html> 
