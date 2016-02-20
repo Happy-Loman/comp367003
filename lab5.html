@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//SQ//DTD HTML 2.0 HoTMetaL + extensions//EN">
+<!-- saved from url=(0165)https://wit.blackboard.com/bbcswebdav/pid-397195-dt-content-rid-1398790_1/courses/COMP367003_Spring_2016/coursesProjectBlank.html?Choice1=eng&Choice2=eng&Choice3=fre -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title></title>
+<script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script>
+
+</head>
+<body bgcolor="">
+	<table>
+  <tr>
+    <td>Gupy</td>
+    <td>$1.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="Gupy_input"></td>
+    <td><input type="BUTTON" value="Add" name="1.99" id="Gupy"></td>
+  </tr>
+  <tr>
+    <td>Mollie</td>
+    <td>$2.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="Mollie_input"></td>
+    <td><input type="BUTTON" value="Add" name="2.99" id="Mollie"></td>
+  </tr>
+  <tr>
+    <td>Angel Fish</td>
+    <td>$15.00</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="AngelFish_input"></td>
+    <td><input type="BUTTON" value="Add" name="15.00" id="AngelFish"></td>
+  </tr>
+  <tr>
+    <td>Goldfish</td>
+    <td>$0.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="Goldfish_input"></td>
+    <td><input type="BUTTON" value="Add" name="0.99" id="Goldfish"></td>
+  </tr>
+  <tr>
+    <td>Piranha</td>
+    <td>$27.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="Piranha_input"></td>
+    <td><input type="BUTTON" value="Add" name="27.99" id="Piranha"></td>
+  </tr>
+  <tr>
+    <td>Spiny Eel</td>
+    <td>$14.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="SpinyEel_input"></td>
+    <td><input type="BUTTON" value="Add" name="14.99" id="SpinyEel"></td>
+  </tr>
+  <tr>
+    <td>Clown Loach</td>
+    <td>$9.99</td>
+    <td>Quantiy: <input type="text" style="width:50px;" id="ClownLoach_input"></td>
+    <td><input type="BUTTON" value="Add" name="9.99" id="ClownLoach"></td>
+  </tr>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<div id="cart">
+Cart: empty
+</div>
+<br>
+<div id="price">
+	You Pay: $0.00
+</div>
+
+<input type="BUTTON" value="Check Out" id="pay">
+
+<script type="text/javascript">
+	var price = 0;
+	var num_of_buuys = 1;
+	var total_fish = 0;
+	var checked_out = false;
+	$("input").click(function(){
+		var this_id = $(this).attr("id"); 
+		var price_of_item = Number($(this).attr("name"));isNaN
+		if($(this).attr("type") == "BUTTON" && !checked_out){
+			var amount = $("#" + this_id + "_input").val(); 
+			if(!isNaN(amount)){
+				$("#cart").append("<div>"+ num_of_buuys + ".) " + this_id + ": " + amount + " | Price: " + (amount*price_of_item).toFixed(2) + "</div>");
+				$("#" + this_id + "_input").val('');
+				total_fish += amount;
+				price += amount*price_of_item;
+				document.getElementById('price').innerHTML = "You Pay: " + price.toFixed(2);
+			}
+			num_of_buuys++;
+		}
+	})
+
+	$("#pay").click(function(){
+		if(!checked_out){
+			if(total_fish >= 10){
+				price -= (price * 0.1);
+				document.getElementById('price').innerHTML = "Final Price! : " + price.toFixed(2);
+				checked_out = true;
+			}
+		}
+	})
+</script>
+
+</body>
+</html>
